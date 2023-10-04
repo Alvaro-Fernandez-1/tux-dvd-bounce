@@ -54,8 +54,6 @@ int main() {
 		renderTux(xPos, yPos, colorChange);
 		draw();
 		removeTux(xPos, yPos);
-		end = getMicros();
-		elapsed = end - start;
 		
 		xPos += xDir;
 		yPos += yDir;
@@ -79,13 +77,14 @@ int main() {
 			yDir *= -1;
 			colorChange = newColor();
 		}
+		end = getMicros();
+		elapsed = end - start;
+		
 		if (frameTime > elapsed) {
 			usleep(frameTime - elapsed);
 		}
-
 		printf("\n"); // for some reason if you don't print anything it doesn't refresh smoothly
 	}
-	
 }
 
 uint32_t newColor(){
